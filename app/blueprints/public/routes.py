@@ -1,9 +1,6 @@
-from datetime import datetime, timezone
-
 from flask import render_template
 
-from ...extensions import get_db
-from ...services.cv_service import get_cv
+from ...services.cv_service import get_cv, save_message
 from . import bp
 from .forms import ContactForm
 
@@ -20,14 +17,5 @@ def contact():
         errors = [e for errs in form.errors.values() for e in errs]
         return "; ".join(errors) or "Ongeldig formulier", 200
 
-    get_db().messages.insert_one(
-        {
-            "name": form.name.data,
-            "email": form.email.data,
-            "subject": form.subject.data,
-            "body": form.message.data,
-            "created_at": datetime.now(timezone.utc),
-            "read": False,
-        }
-    )
+    save_message(form.name.data, form.email.data, form.subject.data, form.message.data)
     return "OK"

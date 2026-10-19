@@ -1,0 +1,129 @@
+{
+  "profile": {
+    "name": "Jouw Naam",
+    "title": "Full Stack Developer",
+    "roles": [
+      "Developer",
+      "Ontwerper",
+      "Freelancer"
+    ],
+    "tagline": "Korte introductie over wie je bent en wat je doet.",
+    "headline": "Ideeën omzetten in werkende software",
+    "bio": [
+      "Eerste alinea over jezelf en je achtergrond.",
+      "Tweede alinea over waar je goed in bent en wat je zoekt."
+    ],
+    "photo": "profile/profile-square-3.webp",
+    "hero_image": "profile/profile-bg-5.webp",
+    "email": "naam@example.com",
+    "phone": "+31 6 12345678",
+    "location": "Amsterdam, Nederland",
+    "address": "",
+    "degree": "Bachelor ICT",
+    "experience_label": "8+ jaar",
+    "availability": "Beschikbaar",
+    "cv_url": "",
+    "stats": [
+      {
+        "value": "25",
+        "label": "Projecten"
+      },
+      {
+        "value": "8+",
+        "label": "Jaren"
+      }
+    ],
+    "social": {
+      "linkedin": "https://www.linkedin.com/",
+      "github": "https://github.com/"
+    }
+  },
+  "experience": [
+    {
+      "role": "Senior Developer",
+      "company": "Bedrijf A",
+      "period": "2023 - heden",
+      "current": true,
+      "icon": "buildings",
+      "description": "Omschrijving van de functie.",
+      "tags": [
+        "Python",
+        "Flask"
+      ]
+    },
+    {
+      "role": "Developer",
+      "company": "Bedrijf B",
+      "period": "2020 - 2023",
+      "icon": "laptop",
+      "description": "Omschrijving van de functie."
+    }
+  ],
+  "education": [
+    {
+      "period": "2016 - 2020",
+      "level": "Bachelor",
+      "degree": "Bachelor ICT",
+      "school": "Hogeschool X",
+      "description": "Korte omschrijving.",
+      "icon": "mortarboard-fill"
+    },
+    {
+      "period": "2018 - 2023",
+      "level": "Certificaten",
+      "degree": "Certificeringen",
+      "icon": "patch-check-fill",
+      "certs": [
+        {
+          "name": "Certificaat A",
+          "year": "2023"
+        },
+        {
+          "name": "Certificaat B",
+          "year": "2021"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python & Flask",
+      "level": 90
+    },
+    {
+      "name": "MongoDB",
+      "level": 80
+    },
+    {
+      "name": "HTML & CSS",
+      "level": 85
+    }
+  ],
+  "projects": [
+    {
+      "slug": "project-1",
+      "title": "Project één",
+      "category": "Development",
+      "tags": [
+        "Python",
+        "Flask"
+      ],
+      "year": "2024",
+      "image": "portfolio/portfolio-1.webp",
+      "summary": "Korte omschrijving.",
+      "url": ""
+    },
+    {
+      "slug": "project-2",
+      "title": "Project twee",
+      "category": "Design",
+      "tags": [
+        "UI/UX"
+      ],
+      "year": "2023",
+      "image": "portfolio/portfolio-2.webp",
+      "summary": "Korte omschrijving.",
+      "url": ""
+    }
+  ]
+}

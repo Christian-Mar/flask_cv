@@ -1,7 +1,10 @@
 import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-me")
-    MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
-    MONGO_DB_NAME = os.environ.get("MONGO_DB_NAME", "cv_app")
+    CV_FILE = Path(os.environ.get("CV_FILE", BASE_DIR / "data" / "cv.json"))
+    MESSAGES_FILE = Path(os.environ.get("MESSAGES_FILE", BASE_DIR / "data" / "messages.jsonl"))

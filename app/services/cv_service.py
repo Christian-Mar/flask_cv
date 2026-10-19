@@ -1,6 +1,8 @@
+import json
 import re
+from datetime import datetime, timezone
 
-from ..extensions import get_db
+from flask import current_app
 
 
 def _slug(text: str) -> str:
@@ -8,14 +10,16 @@ def _slug(text: str) -> str:
 
 
 def get_cv() -> dict:
-    """Stelt de volledige cv-context samen uit alle collecties."""
-    db = get_db()
-    profile = db.profile.find_one({}, {"_id": 0}) or {}
+    """Leest data/cv.json en stelt de cv-context voor de templates samen."""
+    with open(current_app.config["CV_FILE"], encoding="utf-8") as f:
+        data = json.load(f)
+
+    profile = data.get("profile", {})
     profile.setdefault("social", {})
     profile.setdefault("roles", [])
     profile.setdefault("bio", [])
 
-    projects = list(db.projects.find({}, {"_id": 0}).sort("order", 1))
+    projects = data.get("projects", [])
     categories: dict[str, str] = {}
     for p in projects:
         p["filter"] = _slug(p["category"])
@@ -23,9 +27,23 @@ def get_cv() -> dict:
 
     return {
         "profile": profile,
-        "experience": list(db.experience.find({}, {"_id": 0}).sort("order", 1)),
-        "education": list(db.education.find({}, {"_id": 0}).sort("order", 1)),
-        "skills": list(db.skills.find({}, {"_id": 0}).sort("order", 1)),
+        "experience": data.get("experience", []),
+        "education": data.get("education", []),
+        "skills": data.get("skills", []),
         "projects": projects,
         "categories": list(categories.items()),
     }
+
+
+def save_message(name: str, email: str, subject: str, body: str) -> None:
+    """Voegt een contactbericht toe aan data/messages.jsonl (één JSON-regel per bericht)."""
+    record = {
+        "name": name,
+        "email": email,
+        "subject": subject,
+        "body": body,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    path = current_app.config["MESSAGES_FILE"]
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
