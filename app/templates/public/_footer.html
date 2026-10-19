@@ -1,0 +1,39 @@
+<footer id="footer" class="footer">
+
+  <div class="container footer-top">
+    <div class="row gy-4">
+      <div class="col-lg-7 col-md-12 footer-about">
+        <a href="{{ url_for('public.index') }}" class="logo d-flex align-items-center">
+          <span class="sitename">{{ cv.profile.name }}</span>
+        </a>
+        <p>{{ cv.profile.tagline }}</p>
+        {% include "public/_social.html" %}
+      </div>
+
+      <div class="col-lg-2 col-6 footer-links">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">Over mij</a></li>
+          <li><a href="#resume">Cv</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+        <h4>Contact</h4>
+        <p>{{ cv.profile.location }}</p>
+        <p class="mt-4"><strong>Telefoon:</strong> <span>{{ cv.profile.phone }}</span></p>
+        <p><strong>E-mail:</strong> <span>{{ cv.profile.email }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ cv.profile.name }}</strong> <span>Alle rechten voorbehouden</span></p>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+
+</footer>

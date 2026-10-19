@@ -11,7 +11,7 @@ _client: MongoClient | None = None
 
 def init_mongo(app) -> None:
     global _client
-    _client = MongoClient(app.config["MONGO_URI"])
+    _client = MongoClient(app.config["MONGO_URI"], serverSelectionTimeoutMS=3000)
 
 
 def get_db() -> Database:

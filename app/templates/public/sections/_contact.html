@@ -1,0 +1,56 @@
+<section id="contact" class="contact section">
+
+  <div class="container section-title" data-aos="fade-up">
+    <span class="subtitle">Contact</span>
+    <h2>Contact</h2>
+    <p>Neem gerust contact met me op.</p>
+  </div>
+
+  <div class="container">
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+        {% for icon, title, value in [
+          ('geo-alt', 'Adres', cv.profile.address or cv.profile.location),
+          ('telephone', 'Bel mij', cv.profile.phone),
+          ('envelope', 'Mail mij', cv.profile.email)] if value %}
+        <div class="info-item">
+          <div class="icon-wrapper"><i class="bi bi-{{ icon }}"></i></div>
+          <div>
+            <h3>{{ title }}</h3>
+            <p>{{ value }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-lg-8">
+        <form action="{{ url_for('public.contact') }}" method="post" class="php-email-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Je naam" required>
+            </div>
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" placeholder="Je e-mailadres" required>
+            </div>
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" placeholder="Onderwerp" required>
+            </div>
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="6" placeholder="Bericht" required></textarea>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="loading">Laden</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Je bericht is verzonden. Bedankt!</div>
+              <button type="submit">Verstuur bericht</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</section>

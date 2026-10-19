@@ -1,0 +1,7 @@
+<div class="social-links d-flex mt-4">
+  {% for key, icon in [('linkedin', 'linkedin'), ('github', 'github'), ('x', 'twitter-x'), ('instagram', 'instagram'), ('facebook', 'facebook')] %}
+    {% if cv.profile.social.get(key) %}
+    <a href="{{ cv.profile.social[key] }}" target="_blank" rel="noopener"><i class="bi bi-{{ icon }}"></i></a>
+    {% endif %}
+  {% endfor %}
+</div>

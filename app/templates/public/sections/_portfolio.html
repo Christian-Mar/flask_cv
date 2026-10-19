@@ -1,0 +1,54 @@
+<section id="portfolio" class="portfolio section">
+
+  <div class="container section-title" data-aos="fade-up">
+    <span class="subtitle">Portfolio</span>
+    <h2>Portfolio</h2>
+    <p>Een selectie van mijn projecten.</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
+        <li data-filter="*" class="filter-active">Alles</li>
+        {% for slug, label in cv.categories %}
+        <li data-filter=".filter-{{ slug }}">{{ label }}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
+        {% for p in cv.projects %}
+        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ p.filter }}">
+          <div class="portfolio-card">
+            <div class="portfolio-image-container">
+              <img src="{{ url_for('static', filename='assets/img/' ~ p.image) }}" alt="{{ p.title }}" class="img-fluid" loading="lazy">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info">
+                  <span class="project-category">{{ p.category }}</span>
+                  <h4>{{ p.title }}</h4>
+                </div>
+                <div class="portfolio-actions">
+                  <a href="{{ url_for('static', filename='assets/img/' ~ p.image) }}" class="glightbox portfolio-link" title="{{ p.summary }}">
+                    <i class="bi bi-plus-lg"></i>
+                  </a>
+                  {% if p.url %}
+                  <a href="{{ p.url }}" class="portfolio-details" target="_blank" rel="noopener"><i class="bi bi-arrow-right"></i></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-meta">
+              <div class="project-tags">
+                {% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+              </div>
+              <div class="project-year">{{ p.year }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+</section>

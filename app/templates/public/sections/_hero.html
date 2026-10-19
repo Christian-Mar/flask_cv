@@ -1,0 +1,21 @@
+<section id="hero" class="hero section dark-background">
+
+  <img src="{{ url_for('static', filename='assets/img/' ~ cv.profile.hero_image) }}" alt="" data-aos="fade-in">
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2>Hoi, ik ben {{ cv.profile.name }}</h2>
+        <p>Ik ben <span class="typed" data-typed-items="{{ cv.profile.roles | join(', ') }}"></span><span class="typed-cursor" aria-hidden="true"></span></p>
+        <div class="social-links">
+          {% for key, icon in [('linkedin', 'linkedin'), ('github', 'github'), ('x', 'twitter-x'), ('instagram', 'instagram'), ('facebook', 'facebook')] %}
+            {% if cv.profile.social.get(key) %}
+            <a href="{{ cv.profile.social[key] }}" target="_blank" rel="noopener"><i class="bi bi-{{ icon }}"></i></a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

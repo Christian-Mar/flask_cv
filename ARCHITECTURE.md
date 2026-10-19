@@ -91,6 +91,8 @@ Admin: `/admin/login` → sessie → CRUD-formulieren per collectie → schrijft
 
 De statische bestanden van de template komen ongewijzigd in `static/assets/`; de HTML wordt opgesplitst in `base.html` + partials en verwijst via `url_for('static', ...)`.
 
+De Services-sectie van Craftivo is bewust weggelaten (niet relevant voor een cv). Skills staan in de About-sectie; `_skills.html` bestaat dus niet apart.
+
 ## 7. Routes
 | Route | Doel |
 |---|---|
