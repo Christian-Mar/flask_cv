@@ -52,7 +52,8 @@ flask_cv_app/
 │   └── seed.py              # vult MongoDB met voorbeeld-cv
 ├── tests/
 ├── .env.example
-├── requirements.txt
+├── pyproject.toml           # dependencies (uv)
+├── uv.lock
 ├── wsgi.py                  # entrypoint voor gunicorn
 └── ARCHITECTURE.md
 ```
@@ -106,7 +107,7 @@ De statische bestanden van de template komen ongewijzigd in `static/assets/`; de
 - Rate limiting op `/contact` (bijv. Flask-Limiter).
 
 ## 9. Bouwvolgorde
-1. Project opzetten: venv, `requirements.txt`, application factory, MongoDB-verbinding.
+1. Project opzetten: uv-omgeving (`pyproject.toml`), application factory, MongoDB-verbinding.
 2. Craftivo downloaden, assets plaatsen, `base.html` + partials maken met statische tekst.
 3. Datamodellen + `seed.py`; partials koppelen aan data.
 4. Contactformulier.

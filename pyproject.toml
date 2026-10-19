@@ -1,0 +1,24 @@
+[project]
+name = "flask-cv-app"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Christian", email = "71664957+Christian-Mar@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1.3",
+    "flask-login>=0.6.3",
+    "flask-wtf>=1.3.0",
+    "gunicorn>=26.2.0",
+    "jinja2>=3.1.6",
+    "pymongo>=4.19.0",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+flask-cv-app = "flask_cv_app:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
