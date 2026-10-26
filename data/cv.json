@@ -2,7 +2,7 @@
   "profile": {
     "name": "Christian Marginet",
     "title": "HR Manager",
-    "roles": ["HR Manager", "Human Resources Consultant"],
+    "roles": ["HR Manager", "Generalist", "Specialist", "AI adept"],
     "tagline": "Altijd op zoek naar talentvolle mensen voor ons team.",
     "headline": "Altijd op zoek naar talent",
     "bio": [
@@ -61,15 +61,15 @@
     }
   ],
   "skills": [
-    {"name": "Management"},
-    {"name": "Sales Management"},
-    {"name": "IBIS"}
+    {"name": "Management "},
+    {"name": "People "},
+    {"name": " Code (Next.js, Python, SQL)"}
   ],
   "languages": [
     {"name": "Nederlands", "label": "Moedertaal"},
     {"name": "Frans", "label": "Professioneel"},
     {"name": "Engels", "label": "Professioneel"},
-    {"name": "Duits", "label": "Beperkt"},
+    {"name": "Duits", "label": "Basis"},
     {"name": "Spaans", "label": "Elementair"}
   ],
   "projects": []

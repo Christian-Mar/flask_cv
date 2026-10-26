@@ -77,7 +77,6 @@
 {% macro skills_block(skills) %}
 <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
   <div class="section-tag">Vaardigheden</div>
-  <h3>Topvaardigheden</h3>
 
   {% set rated = skills | selectattr('level', 'defined') | list %}
   {% set unrated = skills | rejectattr('level', 'defined') | list %}
@@ -106,7 +105,6 @@
 {% macro languages_block(languages) %}
 <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
   <div class="section-tag">Talen</div>
-  <h3>Taalkennis</h3>
   <div class="skills-list">
     {% for l in languages %}{{ language_item(l.name, l.label) }}{% endfor %}
   </div>

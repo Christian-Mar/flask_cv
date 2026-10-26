@@ -4239,3 +4239,34 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+/*--------------------------------------------------------------
+# Eigen aanpassingen: vaardigheden- en talenblok (Over mij)
+--------------------------------------------------------------*/
+.about .content-wrapper .skills-showcase {
+  margin-bottom: 56px;
+}
+
+.about .content-wrapper .skills-showcase:last-child {
+  margin-bottom: 0;
+}
+
+.about .content-wrapper .skills-showcase .skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+/* Zonder titel: geef de tag ruimte tot de lijst eronder */
+.about .content-wrapper .skills-showcase .section-tag {
+  margin-bottom: 24px;
+}
+
+.about .content-wrapper .skills-showcase .skills-tags .skill-tag {
+  color: var(--heading-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.about .content-wrapper .skills-showcase .skills-list .skill-item:last-child {
+  margin-bottom: 0;
+}
