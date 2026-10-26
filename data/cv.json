@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Christian Marginet",
-    "title": "HR Manager",
-    "roles": ["HR Manager", "Generalist", "Specialist", "AI adept"],
+    "title": "HR",
+    "roles": ["HR", "Generalist", "Specialist", "AI adept", "Manager", "Director"],
     "tagline": "Altijd op zoek naar talentvolle mensen voor ons team.",
     "headline": "Altijd op zoek naar talent",
     "bio": [
@@ -33,7 +33,7 @@
       "period": "oktober 1999 - heden",
       "current": true,
       "icon": "buildings",
-      "description": "HR-verantwoordelijkheid voor de volgende bedrijven: Artilat, Aum-sleep, Begoos, Clarysse, Clarysseweb, De Vier Weverkens, GTA Belgium, GTA China, GTA India, GTA Poland, Novaya Comfort, Novaya Solutions, PB Terminal, Symphony Mills, Tack Truck- & Tankcleaning, Tankservices Pernis, Tankterminal, Ter Molst International, Unidet, VTP en Vyrolat.",
+      "description": "HR-verantwoordelijkheid voor de volgende bedrijven: Artilat, Aum-sleep, Begoos, CHC - Ivory Coast, Clarysse, Clarysseweb, De Vier Weverkens, GTA Belgium, GTA China, GTA India, GTA Mexico, GTA Poland, Novaya Comfort, Novaya Solutions, PB Terminal, Symphony Mills, Tack Truck- & Tankcleaning, Tankservices Pernis, Tankterminal, Ter Molst International, Unidet, VTP en Vyrolat.",
       "tags": ["HR", "België"]
     },
     {
@@ -63,6 +63,7 @@
   "skills": [
     {"name": "Management "},
     {"name": "People "},
+    {"name": "Assessment "},
     {"name": " Code (Next.js, Python, SQL)"}
   ],
   "languages": [
@@ -70,7 +71,7 @@
     {"name": "Frans", "label": "Professioneel"},
     {"name": "Engels", "label": "Professioneel"},
     {"name": "Duits", "label": "Basis"},
-    {"name": "Spaans", "label": "Elementair"}
+    {"name": "Spaans", "label": "Basis"}
   ],
   "projects": []
 }
