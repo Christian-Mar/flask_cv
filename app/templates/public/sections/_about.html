@@ -1,51 +1,14 @@
+{% from "components/layout.html" import section_title %}
+{% from "components/about.html" import profile_card, details_grid, skills_block, languages_block %}
 <section id="about" class="about section">
 
-  <div class="container section-title" data-aos="fade-up">
-    <span class="subtitle">Over mij</span>
-    <h2>Over mij</h2>
-    <p>{{ cv.profile.tagline }}</p>
-  </div>
+  {{ section_title("Over mij", "Over mij", cv.profile.tagline) }}
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-5">
 
       <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="150">
-        <div class="profile-card">
-          <div class="profile-header">
-            <div class="profile-avatar">
-              <img src="{{ url_for('static', filename='assets/img/' ~ cv.profile.photo) }}" class="img-fluid" alt="{{ cv.profile.name }}">
-              <div class="status-indicator"></div>
-            </div>
-            <h3>{{ cv.profile.name }}</h3>
-            <span class="role">{{ cv.profile.title }}</span>
-          </div>
-
-          {% if cv.profile.stats %}
-          <div class="profile-stats">
-            {% for s in cv.profile.stats %}
-            <div class="stat-item">
-              <h4>{{ s.value }}</h4>
-              <p>{{ s.label }}</p>
-            </div>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          <div class="profile-actions">
-            {% if cv.profile.cv_url %}
-            <a href="{{ cv.profile.cv_url }}" class="btn-primary"><i class="bi bi-download"></i> Download cv</a>
-            {% endif %}
-            <a href="#contact" class="btn-secondary"><i class="bi bi-envelope"></i> Contact</a>
-          </div>
-
-          <div class="social-connect">
-            {% for key, icon in [('linkedin', 'linkedin'), ('github', 'github'), ('x', 'twitter'), ('instagram', 'instagram')] %}
-              {% if cv.profile.social.get(key) %}
-              <a href="{{ cv.profile.social[key] }}" target="_blank" rel="noopener"><i class="bi bi-{{ icon }}"></i></a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
+        {{ profile_card(cv.profile) }}
       </div>
 
       <div class="col-lg-8" data-aos="fade-left" data-aos-delay="200">
@@ -56,70 +19,9 @@
             {% for p in cv.profile.bio %}<p>{{ p }}</p>{% endfor %}
           </div>
 
-          <div class="details-grid">
-            {% for icon, label, value in [
-              ('briefcase', 'Ervaring', cv.profile.experience_label),
-              ('mortarboard', 'Opleiding', cv.profile.degree),
-              ('geo-alt', 'Woonplaats', cv.profile.location),
-              ('envelope', 'E-mail', cv.profile.email),
-              ('phone', 'Telefoon', cv.profile.phone),
-              ('calendar-check', 'Beschikbaarheid', cv.profile.availability)] if value %}
-            <div class="detail-item" data-aos="fade-up" data-aos-delay="{{ 100 + loop.index0 * 50 }}">
-              <i class="bi bi-{{ icon }}"></i>
-              <div class="detail-content">
-                <span>{{ label }}</span>
-                <strong>{{ value }}</strong>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          {% if cv.skills %}
-          <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
-            <div class="section-tag">Vaardigheden</div>
-            <h3>Topvaardigheden</h3>
-
-            {% set rated = cv.skills | selectattr('level', 'defined') | list %}
-            {% set unrated = cv.skills | rejectattr('level', 'defined') | list %}
-            {% if rated %}
-            <div class="skills-list skills-animation">
-              {% for s in rated %}
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">{{ s.name }}</span>
-                  <span class="skill-percent">{{ s.level }}%</span>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ s.level }}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-            {% endif %}
-            {% if unrated %}
-            <div class="skills-tags">
-              {% for s in unrated %}<span class="skill-tag">{{ s.name }}</span>{% endfor %}
-            </div>
-            {% endif %}
-          </div>
-          {% endif %}
-
-          {% if cv.languages %}
-          <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
-            <div class="section-tag">Talen</div>
-            <h3>Taalkennis</h3>
-            <div class="skills-list">
-              {% for l in cv.languages %}
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">{{ l.name }}</span>
-                  <span class="skill-percent">{{ l.label }}</span>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          {% endif %}
+          {{ details_grid(cv.profile) }}
+          {% if cv.skills %}{{ skills_block(cv.skills) }}{% endif %}
+          {% if cv.languages %}{{ languages_block(cv.languages) }}{% endif %}
         </div>
       </div>
 

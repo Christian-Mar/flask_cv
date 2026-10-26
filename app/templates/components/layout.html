@@ -1,0 +1,24 @@
+{# Algemene bouwstenen: sectietitel, sociale links, menu-item #}
+
+{% macro section_title(subtitle, title, text) %}
+<div class="container section-title" data-aos="fade-up">
+  <span class="subtitle">{{ subtitle }}</span>
+  <h2>{{ title }}</h2>
+  <p>{{ text }}</p>
+</div>
+{% endmacro %}
+
+{% macro social_links(social, css_class="social-links", keys=["linkedin", "github", "x", "instagram", "facebook"], x_icon="twitter-x") %}
+{% set icons = {"linkedin": "linkedin", "github": "github", "x": x_icon, "instagram": "instagram", "facebook": "facebook"} %}
+<div class="{{ css_class }}">
+  {% for key in keys %}
+    {% if social.get(key) %}
+    <a href="{{ social[key] }}" target="_blank" rel="noopener"><i class="bi bi-{{ icons[key] }}"></i></a>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro nav_item(href, label, active=false) %}
+<li><a href="{{ href }}"{% if active %} class="active"{% endif %}>{{ label }}</a></li>
+{% endmacro %}

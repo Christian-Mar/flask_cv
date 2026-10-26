@@ -1,42 +1,18 @@
+{% from "components/layout.html" import section_title %}
+{% from "components/resume.html" import column_header, exp_card, timeline_item %}
 <section id="resume" class="resume section">
 
-  <div class="container section-title" data-aos="fade-up">
-    <span class="subtitle">Cv</span>
-    <h2>Cv</h2>
-    <p>Werkervaring en opleidingen.</p>
-  </div>
+  {{ section_title("Cv", "Cv", "Werkervaring en opleidingen.") }}
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-5">
 
       <div class="col-lg-6">
         <div class="experience-section">
-          <div class="section-header" data-aos="fade-right" data-aos-delay="200">
-            <div class="header-content">
-              <span class="section-badge">Werkervaring</span>
-              <h2>Loopbaan</h2>
-            </div>
-          </div>
-
+          {{ column_header("Werkervaring", "Loopbaan", "fade-right") }}
           <div class="experience-cards">
             {% for e in cv.experience %}
-            <div class="exp-card{% if loop.first %} featured{% endif %}" data-aos="zoom-in" data-aos-delay="{{ 300 + loop.index0 * 50 }}">
-              <div class="card-header">
-                <div class="company-logo"><i class="bi bi-{{ e.icon or 'buildings' }}"></i></div>
-                {% if e.current %}<div class="period-badge">Huidig</div>{% endif %}
-              </div>
-              <div class="card-body">
-                <h3>{{ e.role }}</h3>
-                <p class="company-name">{{ e.company }}</p>
-                <span class="duration">{{ e.period }}</span>
-                {% if e.description %}<p class="description">{{ e.description }}</p>{% endif %}
-                {% if e.tags %}
-                <div class="skills-tags">
-                  {% for t in e.tags %}<span class="skill-tag">{{ t }}</span>{% endfor %}
-                </div>
-                {% endif %}
-              </div>
-            </div>
+              {{ exp_card(e, loop.first, 300 + loop.index0 * 50) }}
             {% endfor %}
           </div>
         </div>
@@ -44,42 +20,10 @@
 
       <div class="col-lg-6">
         <div class="education-section">
-          <div class="section-header" data-aos="fade-left" data-aos-delay="200">
-            <div class="header-content">
-              <span class="section-badge">Opleiding</span>
-              <h2>Achtergrond</h2>
-            </div>
-          </div>
-
+          {{ column_header("Opleiding", "Achtergrond", "fade-left") }}
           <div class="education-timeline" data-aos="fade-left" data-aos-delay="300">
             <div class="timeline-track">
-              {% for ed in cv.education %}
-              <div class="timeline-item">
-                <div class="timeline-marker"><i class="bi bi-{{ ed.icon or 'mortarboard-fill' }}"></i></div>
-                <div class="timeline-content">
-                  <div class="education-meta">
-                    <span class="year-range">{{ ed.period }}</span>
-                    {% if ed.level %}<span class="degree-level">{{ ed.level }}</span>{% endif %}
-                  </div>
-                  <h4>{{ ed.degree }}</h4>
-                  {% if ed.school %}<p class="institution">{{ ed.school }}</p>{% endif %}
-                  {% if ed.description %}<p class="description">{{ ed.description }}</p>{% endif %}
-                  {% if ed.achievement %}
-                  <div class="achievement"><i class="bi bi-award"></i><span>{{ ed.achievement }}</span></div>
-                  {% endif %}
-                  {% if ed.certs %}
-                  <div class="certifications-list">
-                    {% for c in ed.certs %}
-                    <div class="cert-item">
-                      <span class="cert-name">{{ c.name }}</span>
-                      <span class="cert-year">{{ c.year }}</span>
-                    </div>
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                </div>
-              </div>
-              {% endfor %}
+              {% for ed in cv.education %}{{ timeline_item(ed) }}{% endfor %}
             </div>
           </div>
         </div>

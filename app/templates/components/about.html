@@ -1,0 +1,114 @@
+{# Bouwstenen voor de sectie "Over mij" #}
+{% from "components/layout.html" import social_links %}
+
+{% macro stat_item(value, label) %}
+<div class="stat-item">
+  <h4>{{ value }}</h4>
+  <p>{{ label }}</p>
+</div>
+{% endmacro %}
+
+{% macro profile_card(profile) %}
+<div class="profile-card">
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img src="{{ url_for('static', filename='assets/img/' ~ profile.photo) }}" class="img-fluid" alt="{{ profile.name }}">
+      <div class="status-indicator"></div>
+    </div>
+    <h3>{{ profile.name }}</h3>
+    <span class="role">{{ profile.title }}</span>
+  </div>
+
+  {% if profile.stats %}
+  <div class="profile-stats">
+    {% for s in profile.stats %}{{ stat_item(s.value, s.label) }}{% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="profile-actions">
+    {% if profile.cv_url %}
+    <a href="{{ profile.cv_url }}" class="btn-primary"><i class="bi bi-download"></i> Download cv</a>
+    {% endif %}
+    <a href="#contact" class="btn-secondary"><i class="bi bi-envelope"></i> Contact</a>
+  </div>
+
+  {{ social_links(profile.social, "social-connect", ["linkedin", "github", "x", "instagram"], "twitter") }}
+</div>
+{% endmacro %}
+
+{% macro detail_item(icon, label, value, delay=100) %}
+<div class="detail-item" data-aos="fade-up" data-aos-delay="{{ delay }}">
+  <i class="bi bi-{{ icon }}"></i>
+  <div class="detail-content">
+    <span>{{ label }}</span>
+    <strong>{{ value }}</strong>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro details_grid(profile) %}
+<div class="details-grid">
+  {% for icon, label, value in [
+    ('briefcase', 'Ervaring', profile.experience_label),
+    ('mortarboard', 'Opleiding', profile.degree),
+    ('geo-alt', 'Woonplaats', profile.location),
+    ('envelope', 'E-mail', profile.email),
+    ('phone', 'Telefoon', profile.phone),
+    ('calendar-check', 'Beschikbaarheid', profile.availability)] if value %}
+    {{ detail_item(icon, label, value, 100 + loop.index0 * 50) }}
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro skill_bar(name, level) %}
+<div class="skill-item">
+  <div class="skill-info">
+    <span class="skill-name">{{ name }}</span>
+    <span class="skill-percent">{{ level }}%</span>
+  </div>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{ level }}" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro skill_tag(name) %}<span class="skill-tag">{{ name }}</span>{% endmacro %}
+
+{% macro skills_block(skills) %}
+<div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
+  <div class="section-tag">Vaardigheden</div>
+  <h3>Topvaardigheden</h3>
+
+  {% set rated = skills | selectattr('level', 'defined') | list %}
+  {% set unrated = skills | rejectattr('level', 'defined') | list %}
+  {% if rated %}
+  <div class="skills-list skills-animation">
+    {% for s in rated %}{{ skill_bar(s.name, s.level) }}{% endfor %}
+  </div>
+  {% endif %}
+  {% if unrated %}
+  <div class="skills-tags">
+    {% for s in unrated %}{{ skill_tag(s.name) }}{% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro language_item(name, label) %}
+<div class="skill-item">
+  <div class="skill-info">
+    <span class="skill-name">{{ name }}</span>
+    <span class="skill-percent">{{ label }}</span>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro languages_block(languages) %}
+<div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
+  <div class="section-tag">Talen</div>
+  <h3>Taalkennis</h3>
+  <div class="skills-list">
+    {% for l in languages %}{{ language_item(l.name, l.label) }}{% endfor %}
+  </div>
+</div>
+{% endmacro %}

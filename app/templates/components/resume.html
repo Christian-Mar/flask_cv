@@ -1,0 +1,60 @@
+{# Bouwstenen voor de sectie "Cv" #}
+
+{% macro column_header(badge, title, aos) %}
+<div class="section-header" data-aos="{{ aos }}" data-aos-delay="200">
+  <div class="header-content">
+    <span class="section-badge">{{ badge }}</span>
+    <h2>{{ title }}</h2>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro exp_card(e, featured=false, delay=300) %}
+<div class="exp-card{% if featured %} featured{% endif %}" data-aos="zoom-in" data-aos-delay="{{ delay }}">
+  <div class="card-header">
+    <div class="company-logo"><i class="bi bi-{{ e.icon or 'buildings' }}"></i></div>
+    {% if e.current %}<div class="period-badge">Huidig</div>{% endif %}
+  </div>
+  <div class="card-body">
+    <h3>{{ e.role }}</h3>
+    <p class="company-name">{{ e.company }}</p>
+    <span class="duration">{{ e.period }}</span>
+    {% if e.description %}<p class="description">{{ e.description }}</p>{% endif %}
+    {% if e.tags %}
+    <div class="skills-tags">
+      {% for t in e.tags %}<span class="skill-tag">{{ t }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro cert_item(name, year) %}
+<div class="cert-item">
+  <span class="cert-name">{{ name }}</span>
+  <span class="cert-year">{{ year }}</span>
+</div>
+{% endmacro %}
+
+{% macro timeline_item(ed) %}
+<div class="timeline-item">
+  <div class="timeline-marker"><i class="bi bi-{{ ed.icon or 'mortarboard-fill' }}"></i></div>
+  <div class="timeline-content">
+    <div class="education-meta">
+      <span class="year-range">{{ ed.period }}</span>
+      {% if ed.level %}<span class="degree-level">{{ ed.level }}</span>{% endif %}
+    </div>
+    <h4>{{ ed.degree }}</h4>
+    {% if ed.school %}<p class="institution">{{ ed.school }}</p>{% endif %}
+    {% if ed.description %}<p class="description">{{ ed.description }}</p>{% endif %}
+    {% if ed.achievement %}
+    <div class="achievement"><i class="bi bi-award"></i><span>{{ ed.achievement }}</span></div>
+    {% endif %}
+    {% if ed.certs %}
+    <div class="certifications-list">
+      {% for c in ed.certs %}{{ cert_item(c.name, c.year) }}{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
