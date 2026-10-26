@@ -30,6 +30,7 @@ def get_cv() -> dict:
         "experience": data.get("experience", []),
         "education": data.get("education", []),
         "skills": data.get("skills", []),
+        "languages": data.get("languages", []),
         "projects": projects,
         "categories": list(categories.items()),
     }

@@ -77,10 +77,13 @@
           {% if cv.skills %}
           <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
             <div class="section-tag">Vaardigheden</div>
-            <h3>Technische vaardigheden</h3>
+            <h3>Topvaardigheden</h3>
 
+            {% set rated = cv.skills | selectattr('level', 'defined') | list %}
+            {% set unrated = cv.skills | rejectattr('level', 'defined') | list %}
+            {% if rated %}
             <div class="skills-list skills-animation">
-              {% for s in cv.skills %}
+              {% for s in rated %}
               <div class="skill-item">
                 <div class="skill-info">
                   <span class="skill-name">{{ s.name }}</span>
@@ -88,6 +91,29 @@
                 </div>
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="{{ s.level }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% if unrated %}
+            <div class="skills-tags">
+              {% for s in unrated %}<span class="skill-tag">{{ s.name }}</span>{% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if cv.languages %}
+          <div class="skills-showcase" data-aos="fade-up" data-aos-delay="250">
+            <div class="section-tag">Talen</div>
+            <h3>Taalkennis</h3>
+            <div class="skills-list">
+              {% for l in cv.languages %}
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">{{ l.name }}</span>
+                  <span class="skill-percent">{{ l.label }}</span>
                 </div>
               </div>
               {% endfor %}

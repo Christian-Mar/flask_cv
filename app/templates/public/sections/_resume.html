@@ -29,7 +29,7 @@
                 <h3>{{ e.role }}</h3>
                 <p class="company-name">{{ e.company }}</p>
                 <span class="duration">{{ e.period }}</span>
-                <p class="description">{{ e.description }}</p>
+                {% if e.description %}<p class="description">{{ e.description }}</p>{% endif %}
                 {% if e.tags %}
                 <div class="skills-tags">
                   {% for t in e.tags %}<span class="skill-tag">{{ t }}</span>{% endfor %}
